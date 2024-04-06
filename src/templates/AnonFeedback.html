@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous feedback</title>
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'>
-    <link rel="stylesheet" href="AnonFeedback.css">
-</head>
-<body>
-    <header><div id="div_flexbox">
-        <div id = "title">
-            <strong>CSCB20</strong>
-        </div>
-        <div id="buttongrid">
-            <a  href="index.html">Home</a>
-            <a href="staff.html">Staff and Instructors</a>
-            <a href="news.html">News</a>
-            <a href="calendar.html">Calendar</a>
-            <a href="assignment_lab.html">Labs and Assignment</a>
-            <a href="lecture.html">Lecture</a>
-            <a id="current_header" href="AnonFeedback.html">Annon Feedback</a>
-            <a href="resources.html">Online Resources</a>
+{% extends "index.html" %}
 
-        </div>
-    </div></header>
+{% block content %}
 <div  id="div_homepage_body" class="first_body">
     <h1>
         Welcome to CSCB20: Anon Feedback
@@ -37,9 +14,4 @@
     </form>
 
 </div>
-<footer>
-    <a href="https://web.cs.toronto.edu/about/our-department">Faculty of Computer Science at UofT</a>
-    <p>Created by: Eddie Yang, Jessica Wenbei Zhu, Hengyi Li</p>
-</footer>
-</body>
-</html>
+{% endblock %}
