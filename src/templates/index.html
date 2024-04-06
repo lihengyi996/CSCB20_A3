@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <header><div id="div_flexbox">
+        <div id = "title">
+            <strong>CSCB20</strong>
+        </div>
+        <div id="buttongrid">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('staff') }}">Staff and Instructors</a>
+            <a href="{{ url_for('news') }}">News</a>
+            <a href="{{ url_for('calendar') }}">Calendar</a>
+            <a href="{{ url_for('assignment_lab') }}">Labs and Assignment</a>
+            <a href="{{ url_for('lecture') }}">Lecture</a>
+            <a href="{{ url_for('AnonFeedback') }}">Annon Feedback</a>
+            <a href="{{ url_for('resources') }}">Online Resources</a>
+
+        </div>
+    </div></header>
+    <br>
+    
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <a href="https://web.cs.toronto.edu/about/our-department">Faculty of Computer Science at UofT</a>
+        <p>Created by: Eddie Yang, Jessica Wenbei Zhu, Hengyi Li</p>
+    </footer>
+</body>
+</html>
