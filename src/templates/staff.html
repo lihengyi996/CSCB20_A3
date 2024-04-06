@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staff.css') }}">
+</head>
     <div id="div_homepage_body" class="first_body">
         <div id="instructor_grid">
             <div>
@@ -15,7 +18,7 @@
                 </p>
             </div>
             <div>
-                <img id="prof_image" src="Images/Purva's picture.jpg">
+                <img id="prof_image" src="{{ url_for('static', filename='Images/Purva.jpg') }}">
             </div>
         </div>
         
