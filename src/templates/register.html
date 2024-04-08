@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% block content %}
+        <form action="http://127.0.0.1:5000/register" method = "post" style="margin-top: 10%;">
+            <label for="utorid">UTorID</label>
+            <input type="text" id="UTorID" name="UTorID">
+  
+            <label for="identity"> Identity </label>
+            <input type="text" id="Identity" name="Identity">
+
+            <label for="Password">Password</label>
+            <textarea id="text" name="Password"></textarea>
+  
+            <button type="register">Register</button>
+        </form>
+{% endblock %}
