@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block content %}
+
+<br>
+<table class="my_table" style="margin-top: 10%;">
+    <tr>
+        <th>ID</th>
+        <th>midterm</th>
+        <th>final</th>
+        <th>assignment1</th>
+        <th>assignment2</th>
+        <th>assignment3</th>
+        <th>lab1</th>
+        <th>lab2</th>
+        <th>lab3</th>
+    </tr>
+    {% for Grade in query_marks_result %}
+    <tr>
+        <td>{{Grade.id}}</td>
+        <td>{{Grade.midterm}}</td>
+        <td>{{Grade.final}}</td>
+        <td>{{Grade.assignment1}}</td>
+        <td>{{Grade.assignment2}}</td>
+        <td>{{Grade.assignment3}}</td>
+        <td>{{Grade.lab1}}</td>
+        <td>{{Grade.lab2}}</td>
+        <td>{{Grade.lab3}}</td>
+    </tr>
+    {% endfor %}
+
+
+
+
+</table>
+{% endblock %}  

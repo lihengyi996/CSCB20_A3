@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </head>
+
+{% with messages = get_flashed_messages(with_categories = True) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div style="margin-top: 10%;">{{ category }} - {{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <form action="http://127.0.0.1:5000/login" method = "post" style="margin-top: 10%;">
+            <label for="UTorID">UTorID</label>
+            <input type="text" id="UTorID" name="UTorID">
+  
+            <label for="Password">Password</label>
+            <textarea id="text" name="Password"></textarea>
+  
+            <button type="Login">Login</button>
+        </form>
+{% endblock %}

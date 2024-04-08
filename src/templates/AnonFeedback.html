@@ -1,17 +1,29 @@
 {% extends "index.html" %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AnonFeedback.css') }}">
+</head>
 <div  id="div_homepage_body" class="first_body">
     <h1>
-        Welcome to CSCB20: Anon Feedback
+        Welcome to CSCB20: AnonFeedback
     </h1>
-    Feedback:
-    <form>
-        
-        <textarea  placeholder="Please enter your feedback here"></textarea><br>
-        
-        <button type="submit">Submit Feedback</button>
-    </form>
 
+    <form method="POST">
+        <label for="content_teaching_good">What was good about the teaching?</label>
+        <textarea id="content_teaching_good" name="content_teaching_good"></textarea>
+        
+        <label for="content_teaching_bad">What could be improved about the teaching?</label>
+        <textarea id="content_teaching_bad" name="content_teaching_bad"></textarea>
+        
+        <label for="content_assignment_good">What do you like about the labs?</label>
+        <textarea id="content_assignment_good" name="content_assignment_good"></textarea>
+    
+        <label for="content_assignment_bad">What do you recommend the lab instructors to do to improve their lab teaching?</label>
+        <textarea id="content_assignment_bad" name="content_assignment_bad"></textarea>
+
+        <input type="submit" value="Submit Feedback">
+    </form>
+    
 </div>
 {% endblock %}
