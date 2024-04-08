@@ -110,19 +110,15 @@ def resources():
 @app.route('/marks', methods = ['GET', 'POST'])
 def marks():
     if request.method == 'GET':
-        query_marks_result = query_marks(2)
+        query_marks_result = query_marks(session['utorid'])
         return render_template('marks.html', query_marks_result = query_marks_result)
     
 @app.route('/add_dummy_grade', methods=['GET'])
 def add_grade():
-    new_grade = Grade(id=1, midterm=85.0, final=90.0, assignment1=80.0, assignment2=82.0, assignment3=88.0, lab1=95.0, lab2=92.0, lab3=91.0)
+    new_grade = Grade(id=3, midterm=85.0, final=0.0, assignment1=0.0, assignment2=1.0, assignment3=2.0, lab1=95.0, lab2=92.0, lab3=91.0)
     db.session.add(new_grade)
     db.session.commit()
     return "Grade added successfully", 200
-    
-def query_marks(id):
-    marks = Grade.query.filter_by(id=session_id)
-    return marks
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -140,7 +136,8 @@ def login():
             flash('Please check your login details and try again', 'error')
             return render_template('login.html')
         else:
-            session['name'] = utorid
+            session['utorid'] = utorid
+            session['identity'] = get_identity_by_utorid(utorid)
             session.permanent = True
             return redirect(url_for('home'))
 
@@ -157,19 +154,41 @@ def register():
             identity,
             hashed_password
         )
-        add_users(reg_details)
-        flash('Registration Successful! Please login now:')
-        return redirect(url_for('login'))
+        try:
+            add_users(reg_details)
+            flash('Registration Successful! Please login now:')
+            return redirect(url_for('login'))
+        except ValueError as e:
+            flash(str(e))
+            return render_template('register.html')
 
 @app.route('/logout')
 def logout():
-    session.pop('name', default = None)
+    session.pop('utorid', default = None)
+    session.pop('identity', default = None)
     return redirect(url_for('home'))
 
 def add_users(reg_details):
-    person = Person(utorid = reg_details[0], identity = reg_details[1], password_hashed = reg_details[2])
-    db.session.add(person)
-    db.session.commit()
+    utorid, identity, hashed_password = reg_details
+    existing_user = Person.query.filter_by(utorid=utorid).first()
+
+    if existing_user is None:
+        # User does not exist, so we can add them
+        new_user = Person(utorid=utorid, password_hashed=hashed_password, identity=identity)
+        db.session.add(new_user)
+        db.session.commit()
+    else:
+        # User already exists, raise an error
+        raise ValueError(f"A user with UTorID {utorid} already exists.")
+
+def query_marks(utorid):
+    current_user = Person.query.filter_by(utorid = utorid).first()
+    marks = Grade.query.filter_by(id=current_user.id)
+    return marks
+
+def get_identity_by_utorid(utorid):
+    current_user = Person.query.filter_by(utorid = utorid).first()
+    return current_user.identity
 
 if __name__ == '__main__':
     app.run(debug=True)

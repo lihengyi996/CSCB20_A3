@@ -1,11 +1,4 @@
 {% extends "index.html" %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <div>{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
 
 {% block content %}
         <form action="http://127.0.0.1:5000/register" method = "post" style="margin-top: 10%;">
@@ -20,4 +13,11 @@
   
             <button type="register">Register</button>
         </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div>{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 {% endblock %}
