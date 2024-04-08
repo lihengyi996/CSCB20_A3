@@ -13,7 +13,7 @@
             <strong>CSCB20</strong>
         </div>
         <div id="buttongrid">
-            {% if session.name %}
+            {% if session.identity == "student" %}
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('staff') }}">Staff and Instructors</a>
             <a href="{{ url_for('news') }}">News</a>
@@ -36,7 +36,7 @@
 
     <footer>
         <a href="https://web.cs.toronto.edu/about/our-department">Faculty of Computer Science at UofT</a>
-        <p>Created by: Eddie Yang, Jessica Wenbei Zhu, Hengyi Li</p>
+        <p>Created by: Xinyu Li, Tong Xu, Hengyi Li</p>
     </footer>
 </body>
 </html>
