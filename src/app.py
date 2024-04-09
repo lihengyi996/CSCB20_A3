@@ -113,6 +113,14 @@ def marks():
         query_marks_result = query_marks(session['utorid'])
         return render_template('marks.html', query_marks_result = query_marks_result)
     
+
+@app.route('/all_student_marks', methods = ['GET', 'POST'])
+def all_student_marks():
+    if request.method == 'GET':
+        query_student_marks = query_marks_all()
+        return render_template('marksView.html', query_student_marks = query_student_marks)
+
+
 @app.route('/add_dummy_grade', methods=['GET'])
 def add_grade():
     new_grade = Grade(id=3, midterm=85.0, final=0.0, assignment1=0.0, assignment2=1.0, assignment3=2.0, lab1=95.0, lab2=92.0, lab3=91.0)
@@ -168,6 +176,16 @@ def logout():
     session.pop('identity', default = None)
     return redirect(url_for('home'))
 
+###################################################
+
+@app.route('/getFeedback', methods = ['GET', 'POST'])
+def getFeedback():
+    if request.method == 'GET':
+        query_student_feedback = query_feedback_all()
+        return render_template('AnonFeedbackView.html', query_student_feedback = query_student_feedback)
+###################################################
+
+
 def add_users(reg_details):
     utorid, identity, hashed_password = reg_details
     existing_user = Person.query.filter_by(utorid=utorid).first()
@@ -180,11 +198,24 @@ def add_users(reg_details):
     else:
         # User already exists, raise an error
         raise ValueError(f"A user with UTorID {utorid} already exists.")
+    
+
 
 def query_marks(utorid):
     current_user = Person.query.filter_by(utorid = utorid).first()
     marks = Grade.query.filter_by(id=current_user.id)
     return marks
+
+def query_marks_all():
+    marks = Grade.query.all()
+    return marks
+
+###################################################
+def query_feedback_all():
+    feedbacks = anonFeedback.query.all()
+    return feedbacks
+###################################################
+
 
 def get_identity_by_utorid(utorid):
     current_user = Person.query.filter_by(utorid = utorid).first()

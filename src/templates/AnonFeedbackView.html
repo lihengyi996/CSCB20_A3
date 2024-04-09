@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h1>
+    Welcome to student feedback page
+</h1>
+<br>
+<table class="feedbackView" style="margin-top: 10%">
+    <tr>
+        <th>feedbackID</th>
+        <th>content_teaching_good</th>
+        <th>content_teaching_bad</th>
+        <th>content_assignment_good</th>
+        <th>content_assignemtn_bad</th>
+    </tr>
+    {% for Feedback in query_student_feedback %}
+    <tr>
+        <td>{{Feedback.feedbackID}}</td>
+        <td>{{Feedback.content_teaching_good}}</td>
+        <td>{{Feedback.content_teaching_bad}}</td>
+        <td>{{Feedback.content_assignment_good}}</td>
+        <td>{{Feedback.content_assignment_bad}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

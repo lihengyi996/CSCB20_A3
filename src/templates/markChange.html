@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AnonFeedback.css') }}">
+</head>
+<div  id="div_homepage_body" class="first_body">
+    <h1>
+        Welcome to Grade Change Page
+    </h1>
+
+    <form method="POST">
+        <label for="content_teaching_good">Enter utorid here:</label>
+        <textarea id="content_teaching_good" name="content_teaching_good"></textarea>
+        
+        <label for="content_teaching_bad">Choose one you would like to change the grade(midterm/final/assignment1/assignment2/assignment3/lab1/lab2/lab3)</label>
+        <textarea id="content_teaching_bad" name="content_teaching_bad"></textarea>
+        
+        <label for="content_assignment_good">New marks that you want to change to:</label>
+        <textarea id="content_assignment_good" name="content_assignment_good"></textarea>
+
+        <input type="submit" value="Submit Feedback">
+    </form>
+    
+</div>
+{% endblock %}
