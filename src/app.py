@@ -123,7 +123,7 @@ def add_grade():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        if 'name' in session:
+        if 'utorid' in session:
             flash('already logged in!!')
             return redirect(url_for('home'))
         else:
