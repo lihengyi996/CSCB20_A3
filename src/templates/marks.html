@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% block content %}
 
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/marks.css') }}">
+</head>
 <br>
 <table class="my_table" style="margin-top: 10%;">
     <tr>
@@ -17,14 +20,62 @@
     {% for Grade in query_marks_result %}
     <tr>
         <td>{{Grade.id}}</td>
-        <td>{{Grade.midterm}}</td>
-        <td>{{Grade.final}}</td>
-        <td>{{Grade.assignment1}}</td>
-        <td>{{Grade.assignment2}}</td>
-        <td>{{Grade.assignment3}}</td>
-        <td>{{Grade.lab1}}</td>
-        <td>{{Grade.lab2}}</td>
-        <td>{{Grade.lab3}}</td>
+        <td>
+            {{Grade.midterm}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='midterm') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.final}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='final') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.assignment1}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='assignment1') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.assignment2}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='assignment2') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.assignment3}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='assignment3') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.lab1}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='lab1') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.lab2}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='lab2') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
+        <td>
+            {{Grade.lab3}}
+            <form action="{{ url_for('submit_remark_request', grade_id=Grade.id, mark_type='lab3') }}" method="post">
+                <textarea name="remark_request" placeholder="Enter your remark request here"></textarea>
+                <button type="submit">Submit Remark Request</button>
+            </form>
+        </td>
     </tr>
     {% endfor %}
 

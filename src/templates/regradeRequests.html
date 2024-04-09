@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h1>
+    Welcome to student feedback page
+</h1>
+<br>
+<form method="POST" action="{{ url_for('update_grades') }}">
+<table class="feedbackView" style="margin-top: 10%">
+    <tr>
+        <th>requestID</th>
+        <th>UTorID</th>
+        <th>request for</th>
+        <th>content (message from student)</th>
+    </tr>
+    {% for request in requests %}
+    <tr>
+        <td>{{request.remarkID}}</td>
+        <td>{{request.utorid}}</td>
+        <td>{{request.regradeType}}</td>
+        <td>{{request.request}}</td>
+        <td style="width: 40px;">
+            <input type="number" name="new_score_{{request.remarkID}}" placeholder="Enter new score">
+        </td>
+        <td style="width: 40px;">
+            <button type="submit" name="remark_id" value="{{request.remarkID}}">Update Score</button>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</form>
+{% endblock %}

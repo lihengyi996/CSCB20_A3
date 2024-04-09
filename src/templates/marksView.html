@@ -4,8 +4,9 @@
     Welcome to marks view webpage
 </h1>
 <br>
-<table  class="marksView" style="margin-top: 10%;">
+<table class="marksView" style="margin-top: 10%;">
     <tr>
+        <th>UTorID</th>
         <th>midterm</th>
         <th>final</th>
         <th>assignment1</th>
@@ -15,18 +16,22 @@
         <th>lab2</th>
         <th>lab3</th>
     </tr>
+    {% with ids = student_ids %}
     {% for Grade in query_student_marks %}
+    {% set id = ids[loop.index0] %}
     <tr>
-        <td>{{Grade.midterm}}</td>
-        <td>{{Grade.final}}</td>
-        <td>{{Grade.assignment1}}</td>
-        <td>{{Grade.assignment2}}</td>
-        <td>{{Grade.assignment3}}</td>
-        <td>{{Grade.lab1}}</td>
-        <td>{{Grade.lab2}}</td>
-        <td>{{Grade.lab3}}</td>
+        <td>{{ id }}</td>
+        <td>{{ Grade.midterm }}</td>
+        <td>{{ Grade.final }}</td>
+        <td>{{ Grade.assignment1 }}</td>
+        <td>{{ Grade.assignment2 }}</td>
+        <td>{{ Grade.assignment3 }}</td>
+        <td>{{ Grade.lab1 }}</td>
+        <td>{{ Grade.lab2 }}</td>
+        <td>{{ Grade.lab3 }}</td>
     </tr>
     {% endfor %}
+    {% endwith %}
 
 
 </table>
